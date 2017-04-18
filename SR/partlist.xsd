@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://jundroo.com/simplerockets/partlist.xsd" xmlns:p="http://jundroo.com/simplerockets/partlist.xsd">
+  <xs:element name="PartTypes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="p:PartType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PartType">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="p:Rcs"/>
+        <xs:element minOccurs="0" ref="p:Solar"/>
+        <xs:element minOccurs="0" ref="p:Lander"/>
+        <xs:element minOccurs="0" ref="p:Engine"/>
+        <xs:element minOccurs="0" ref="p:Tank"/>
+        <xs:element minOccurs="0" ref="p:Damage"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="p:Shape"/>
+        <xs:element ref="p:AttachPoints"/>
+      </xs:sequence>
+      <xs:attribute name="buoyancy" type="xs:decimal"/>
+      <xs:attribute name="canExplode" type="xs:boolean"/>
+      <xs:attribute name="category" type="xs:string"/>
+      <xs:attribute name="coverHeight" type="xs:decimal"/>
+      <xs:attribute name="description" type="xs:string"/>
+      <xs:attribute name="disableEditorRotation" type="xs:boolean"/>
+      <xs:attribute name="drag" type="xs:decimal"/>
+      <xs:attribute name="friction" type="xs:decimal"/>
+      <xs:attribute name="height" use="required" type="xs:decimal"/>
+      <xs:attribute name="hidden" type="xs:boolean"/>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+      <xs:attribute name="ignoreEditorIntersections" type="xs:boolean"/>
+      <xs:attribute name="mass" use="required" type="xs:decimal"/>
+      <xs:attribute name="maxOccurrences" type="xs:integer"/>
+      <xs:attribute name="name" use="required"/>
+      <xs:attribute name="sandboxOnly" type="xs:boolean"/>
+      <xs:attribute name="sprite" use="required" type="xs:anyURI"/>
+      <xs:attribute name="type" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="pod"/>
+            <xs:enumeration value="detacher"/>
+            <xs:enumeration value="wheel"/>
+            <xs:enumeration value="tank"/>
+            <xs:enumeration value="fuselage"/>
+            <xs:enumeration value="strut"/>
+            <xs:enumeration value="engine"/>
+            <xs:enumeration value="parachute"/>
+            <xs:enumeration value="nosecone"/>
+            <xs:enumeration value="rcs"/>
+            <xs:enumeration value="solar"/>
+            <xs:enumeration value="dockconnector"/>
+            <xs:enumeration value="dockport"/>
+            <xs:enumeration value="lander"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="width" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Rcs">
+    <xs:complexType>
+      <xs:attribute name="consumption" use="required" type="xs:decimal"/>
+      <xs:attribute name="power" use="required" type="xs:decimal"/>
+      <xs:attribute name="size" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Solar">
+    <xs:complexType>
+      <xs:attribute name="chargeRate" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Lander">
+    <xs:complexType>
+      <xs:attribute name="angleSpeed" use="required" type="xs:integer"/>
+      <xs:attribute name="lengthSpeed" use="required" type="xs:decimal"/>
+      <xs:attribute name="maxAngle" use="required" type="xs:integer"/>
+      <xs:attribute name="maxLength" use="required" type="xs:decimal"/>
+      <xs:attribute name="minLength" use="required" type="xs:decimal"/>
+      <xs:attribute name="width" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Engine">
+    <xs:complexType>
+      <xs:attribute name="consumption" use="required" type="xs:decimal"/>
+      <xs:attribute name="fuelType" type="xs:integer"/>
+      <xs:attribute name="power" use="required" type="xs:decimal"/>
+      <xs:attribute name="size" use="required" type="xs:decimal"/>
+      <xs:attribute name="throttleExponential" type="xs:boolean"/>
+      <xs:attribute name="turn" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Tank">
+    <xs:complexType>
+      <xs:attribute name="dryMass" use="required" type="xs:decimal"/>
+      <xs:attribute name="fuel" use="required" type="xs:decimal"/>
+      <xs:attribute name="fuelType" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Damage">
+    <xs:complexType>
+      <xs:attribute name="disconnect" use="required" type="xs:integer"/>
+      <xs:attribute name="explode" use="required" type="xs:integer"/>
+      <xs:attribute name="explosionPower" use="required" type="xs:integer"/>
+      <xs:attribute name="explosionSize" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Shape">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="Vertex">
+          <xs:complexType>
+            <xs:attribute name="x" use="required" type="xs:decimal"/>
+            <xs:attribute name="y" use="required" type="xs:decimal"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="sensor" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AttachPoints">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="p:AttachPoint"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AttachPoint">
+    <xs:complexType>
+      <xs:attribute name="breakAngle" type="xs:integer"/>
+      <xs:attribute name="breakForce" type="xs:decimal"/>
+      <xs:attribute name="flipX" type="xs:boolean"/>
+      <xs:attribute name="fuelLine" type="xs:boolean"/>
+      <xs:attribute name="group" type="xs:integer"/>
+      <xs:attribute name="location">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Top"/>
+            <xs:enumeration value="Bottom"/>
+            <xs:enumeration value="TopCenter"/>
+            <xs:enumeration value="BottomCenter"/>
+            <xs:enumeration value="LeftSide"/>
+            <xs:enumeration value="RightSide"/>
+            <xs:enumeration value="LeftCenter"/>
+            <xs:enumeration value="RightCenter"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="order" type="xs:integer"/>
+      <xs:attribute name="x" type="xs:decimal"/>
+      <xs:attribute name="y" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="SRTextureAtlas" xmlns:p="SRTextureAtlas">
+  <xs:element name="TextureAtlas">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="sprite"/>
+      </xs:sequence>
+      <xs:attribute name="height" use="required" type="xs:integer"/>
+      <xs:attribute name="imagePath" use="required" type="xs:NCName"/>
+      <xs:attribute name="width" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="yn">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="y" />
+      <xs:enumeration value="n" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="sprite">
+    <xs:complexType>
+      <xs:attribute name="h" use="required" type="xs:integer"/>
+      <xs:attribute name="n" use="required" type="xs:anyURI"/>
+      <xs:attribute name="r" type="yn"/>
+      <xs:attribute name="w" use="required" type="xs:integer"/>
+      <xs:attribute name="x" use="required" type="xs:integer"/>
+      <xs:attribute name="y" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

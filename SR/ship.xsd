@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="SRShip" xmlns:p="SRShip">
+  <xs:element name="Ship">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="DisconnectedParts"/>
+        <xs:element ref="Parts"/>
+        <xs:element ref="Connections"/>
+      </xs:sequence>
+      <xs:attribute name="liftedOff" use="required" type="xs:integer"/>
+      <xs:attribute name="touchingGround" use="required" type="xs:integer"/>
+      <xs:attribute name="version" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DisconnectedParts">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="Parts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="Part"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Part">
+    <xs:complexType>
+      <xs:choice minOccurs="0">
+        <xs:element ref="Engine"/>
+        <xs:element ref="Pod"/>
+        <xs:element ref="Tank"/>
+      </xs:choice>
+      <xs:attribute name="activated" type="xs:integer"/>
+      <xs:attribute name="angle" use="required" type="xs:decimal"/>
+      <xs:attribute name="angleV" use="required" type="xs:decimal"/>
+      <xs:attribute name="chuteAngle" type="xs:decimal"/>
+      <xs:attribute name="chuteHeight" type="xs:decimal"/>
+      <xs:attribute name="chuteX" type="xs:decimal"/>
+      <xs:attribute name="chuteY" type="xs:decimal"/>
+      <xs:attribute name="deployed" type="xs:integer"/>
+      <xs:attribute name="editorAngle" use="required" type="xs:integer"/>
+      <xs:attribute name="exploded" type="xs:integer"/>
+      <xs:attribute name="extension" type="xs:decimal"/>
+      <xs:attribute name="flippedX" type="xs:integer"/>
+      <xs:attribute name="flippedY" type="xs:integer"/>
+      <xs:attribute name="id" use="required" type="xs:integer"/>
+      <xs:attribute name="inflate" type="xs:integer"/>
+      <xs:attribute name="inflation" type="xs:decimal"/>
+      <xs:attribute name="partType" use="required" type="xs:NCName"/>
+      <xs:attribute name="rope" type="xs:integer"/>
+      <xs:attribute name="x" use="required" type="xs:decimal"/>
+      <xs:attribute name="y" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Engine">
+    <xs:complexType>
+      <xs:attribute name="fuel" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Pod">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Staging"/>
+      </xs:sequence>
+      <xs:attribute name="name" use="required"/>
+      <xs:attribute name="throttle" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Staging">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="Step"/>
+      </xs:sequence>
+      <xs:attribute name="currentStage" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Step">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="Activate"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Activate">
+    <xs:complexType>
+      <xs:attribute name="Id" use="required" type="xs:integer"/>
+      <xs:attribute name="moved" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Tank">
+    <xs:complexType>
+      <xs:attribute name="fuel" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Connections">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="Connection"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Connection">
+    <xs:complexType>
+      <xs:attribute name="childAttachPoint" use="required" type="xs:integer"/>
+      <xs:attribute name="childPart" use="required" type="xs:integer"/>
+      <xs:attribute name="parentAttachPoint" use="required" type="xs:integer"/>
+      <xs:attribute name="parentPart" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

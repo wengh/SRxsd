@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://jundroo.com/simplerockets/solarsystem.xsd" xmlns:s="http://jundroo.com/simplerockets/solarsystem.xsd">
+  <xs:element name="SolarSystem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="s:Planet"/>
+      </xs:sequence>
+      <xs:attribute name="description" use="required"/>
+      <xs:attribute name="name" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Planet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="s:Atmosphere"/>
+        <xs:element ref="s:Children"/>
+        <xs:element ref="s:Orbit"/>
+        <xs:element ref="s:Terrain"/>
+      </xs:choice>
+      <xs:attribute name="description" use="required"/>
+      <xs:attribute name="gravity" use="required" type="xs:decimal"/>
+      <xs:attribute name="icon" type="xs:NCName"/>
+      <xs:attribute name="launchEnabled" type="xs:boolean"/>
+      <xs:attribute name="mapColor" use="required"/>
+      <xs:attribute name="name" use="required"/>
+      <xs:attribute name="radius" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Atmosphere">
+    <xs:complexType>
+      <xs:attribute name="graphicType" use="required" type="xs:integer"/>
+      <xs:attribute name="height" use="required" type="xs:decimal"/>
+      <xs:attribute name="surfacePressure" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Children">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="s:Planet"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Orbit">
+    <xs:complexType>
+      <xs:attribute name="a" use="required" type="xs:decimal"/>
+      <xs:attribute name="e" use="required" type="xs:decimal"/>
+      <xs:attribute name="prograde" use="required" type="xs:integer"/>
+      <xs:attribute name="v" use="required" type="xs:decimal"/>
+      <xs:attribute name="w" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Terrain">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="s:Ranges"/>
+      </xs:sequence>
+      <xs:attribute name="color" use="required"/>
+      <xs:attribute name="maxHeight" use="required" type="xs:decimal"/>
+      <xs:attribute name="minHeight" type="xs:decimal"/>
+      <xs:attribute name="noise" type="xs:decimal"/>
+      <xs:attribute name="texture" type="xs:NCName"/>
+      <xs:attribute name="waterDensity" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Ranges">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="s:Range"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Range">
+    <xs:complexType>
+      <xs:attribute name="endAngle" use="required" type="xs:decimal"/>
+      <xs:attribute name="maxHeight" use="required" type="xs:decimal"/>
+      <xs:attribute name="minHeight" use="required" type="xs:decimal"/>
+      <xs:attribute name="startAngle" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
