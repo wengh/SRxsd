@@ -9,7 +9,7 @@
   </xs:element>
   <xs:element name="PartType">
     <xs:complexType>
-      <xs:sequence>
+      <xs:choice maxOccurs="unbounded">
         <xs:element minOccurs="0" ref="p:Rcs"/>
         <xs:element minOccurs="0" ref="p:Solar"/>
         <xs:element minOccurs="0" ref="p:Lander"/>
@@ -18,7 +18,7 @@
         <xs:element minOccurs="0" ref="p:Damage"/>
         <xs:element minOccurs="0" maxOccurs="unbounded" ref="p:Shape"/>
         <xs:element ref="p:AttachPoints"/>
-      </xs:sequence>
+      </xs:choice>
       <xs:attribute name="buoyancy" type="xs:decimal"/>
       <xs:attribute name="canExplode" type="xs:boolean"/>
       <xs:attribute name="category" type="xs:string"/>
